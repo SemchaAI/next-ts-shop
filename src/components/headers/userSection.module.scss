@@ -1,0 +1,11 @@
+.loadingSpinner {
+  display: flex;
+  width: 80px;
+  height: 160px;
+}
+
+.user {
+  color: var(--on-background);
+  align-items: center;
+  gap: 20px;
+}

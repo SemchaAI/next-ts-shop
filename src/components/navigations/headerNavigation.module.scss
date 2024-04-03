@@ -1,0 +1,11 @@
+.headerNav {
+  width: 100%;
+  height: fit-content;
+  align-self: center;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+
+  gap: 20px;
+}
