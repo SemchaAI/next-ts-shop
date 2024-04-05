@@ -42,74 +42,69 @@ export default function ProductCard({ product }: { product: IProduct }) {
       dispatch(addFavorite(product));
     }
   };
+
   return (
-    <>
-      {product && (
-        <li className={css.product}>
-          <Link
-            className={css.productLink}
-            href={`${PRODUCT_ROUTE}/${product._id}`}
-          >
-            <Image
-              className={css.productImg}
-              width={200}
-              height={200}
-              priority={true}
-              src={url + `/` + product.img}
-              alt={product.title}
-            />
-            <h3 className={css.productTitle}>{product.title}</h3>
-          </Link>
-          <div className={css.productInfo}>
-            <div className={css.productContainer}>
-              <div className={css.productPriceLabel}>Цена:</div>
-              <p className={css.productPrice}>{product.price}MDL</p>
+    <li className={css.product}>
+      <Link
+        className={css.productLink}
+        href={`${PRODUCT_ROUTE}/${product._id}`}
+      >
+        <Image
+          className={css.productImg}
+          width={200}
+          height={200}
+          priority={true}
+          src={url + `/` + product.img}
+          alt={product.title}
+        />
+        <h3 className={css.productTitle}>{product.title}</h3>
+      </Link>
+      <div className={css.productInfo}>
+        <div className={css.productContainer}>
+          <div className={css.productPriceLabel}>Цена:</div>
+          <p className={css.productPrice}>{product.price}MDL</p>
+        </div>
+        <div className={css.productControls}>
+          {isProductInCart ? (
+            <div className={css.outOfStockContainer}>
+              <p className={css.productText}>
+                <CheckIcon />
+                Добавлен
+              </p>
+              <MainBtn
+                icon={true}
+                version="outline"
+                onClick={() => deleteOne({ userId, productId })}
+              >
+                <CloseIcon
+                  width={24}
+                  height={24}
+                />
+              </MainBtn>
             </div>
-            <div className={css.productControls}>
-              {isProductInCart ? (
-                <div className={css.outOfStockContainer}>
-                  <p className={css.productText}>
-                    <CheckIcon />
-                    Добавлен
-                  </p>
-                  <MainBtn
-                    icon={true}
-                    version="outline"
-                    onClick={() => deleteOne({ userId, productId })}
-                  >
-                    <CloseIcon
-                      width={24}
-                      height={24}
-                    />
-                  </MainBtn>
-                </div>
-              ) : product.cnt <= 0 ? (
-                <div className={css.outOfStockContainer}>
-                  <p className={css.productText}>Отсутствует</p>
-                  <OutOfStock className={css.productBtnContainer} />
-                </div>
-              ) : (
-                <div className={css.productBtnsContainer}>
-                  <button
-                    onClick={() => favoriteHandler(product)}
-                    className={css.productBtnContainer}
-                  >
-                    <FavoriteIcon
-                      className={`${css.favoriteIcon} ${favorClass}`}
-                    />
-                  </button>
-                  <button
-                    onClick={() => addOne({ userId, productId })}
-                    className={css.productBtnContainer}
-                  >
-                    <BtnPlus />
-                  </button>
-                </div>
-              )}
+          ) : product.cnt <= 0 ? (
+            <div className={css.outOfStockContainer}>
+              <p className={css.productText}>Отсутствует</p>
+              <OutOfStock className={css.productBtnContainer} />
             </div>
-          </div>
-        </li>
-      )}
-    </>
+          ) : (
+            <div className={css.productBtnsContainer}>
+              <button
+                onClick={() => favoriteHandler(product)}
+                className={css.productBtnContainer}
+              >
+                <FavoriteIcon className={`${css.favoriteIcon} ${favorClass}`} />
+              </button>
+              <button
+                onClick={() => addOne({ userId, productId })}
+                className={css.productBtnContainer}
+              >
+                <BtnPlus />
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </li>
   );
 }
