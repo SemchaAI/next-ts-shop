@@ -4,7 +4,11 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { appStore } from '../lib/features/storesInit/appStore';
 import { ThemeProvider } from 'next-themes';
 
-// import { AuthProvider } from 'acme-auth';
+import { register } from 'swiper/element/bundle';
+register();
+
+import Modal from 'react-modal';
+Modal.setAppElement('body');
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
