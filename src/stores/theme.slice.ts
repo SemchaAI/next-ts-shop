@@ -1,5 +1,3 @@
-'use client';
-
 import type { Theme, ThemeSliceState, ThemeSlice } from '@/models/theme';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
