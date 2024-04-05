@@ -4,7 +4,6 @@ import MainLink from '../links/MainLink';
 import { useGetCartProductsQuery } from '@/services/cartApi';
 // import { useEffect, useRef, useState } from 'react';
 
-// import { CSSTransition } from 'react-transition-group';
 import { useAppSelector } from '@/lib/hooks';
 import Badge from '../badge/Badge';
 
