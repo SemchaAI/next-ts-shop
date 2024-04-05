@@ -12,7 +12,7 @@ export const Min5 = {
 };
 
 export const emailValidation = {
-  required,
+  ...required,
   pattern: {
     value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
     message: 'Некорректная почта',
