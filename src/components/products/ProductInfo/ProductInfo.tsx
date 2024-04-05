@@ -3,15 +3,11 @@
 import { useGetOneProductQuery } from '@/services/productApi';
 import { useRef } from 'react';
 
-import { register } from 'swiper/element/bundle';
-
 import css from './productInfo.module.scss';
 import { IInfo } from '@/models/products';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import ProductInfoSkeleton from './ProductInfoSkeleton';
-
-register();
 
 export default function ProductInfo() {
   const url = process.env.NEXT_PUBLIC_BASE_URL_BD;
@@ -45,7 +41,7 @@ export default function ProductInfo() {
               {thumbnailsGuard && (
                 <swiper-container
                   ref={swiperRef}
-                  class={css.productSwiper2}
+                  className={css.productSwiper2}
                   direction="vertical"
                   slides-per-view="3"
                   space-between="0"
@@ -72,7 +68,7 @@ export default function ProductInfo() {
 
               <swiper-container
                 ref={secSwiperRef}
-                class={css.productSwiper}
+                className={css.productSwiper}
                 navigation="true"
                 slides-per-view="1"
                 // swiper element for thumbs-swiper need same class
