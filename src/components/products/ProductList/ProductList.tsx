@@ -26,28 +26,34 @@ export default function ProductList() {
   );
 
   console.log('productList');
+
+  if (isFetching) {
+    return (
+      <ul className={css.productsList}>
+        {[...Array(limit)].map((_, i) => (
+          <ProductCardSkeleton key={i} />
+        ))}
+      </ul>
+    );
+  }
+  if (isSuccess && data.products.length === 0) {
+    return <div className={css.zeroProducts}>Ничего не найдено</div>;
+  }
+
   return (
     <>
-      {isFetching ? (
-        <ul className={css.productsList}>
-          {[...Array(limit)].map((_, i) => (
-            <ProductCardSkeleton key={i} />
-          ))}
-        </ul>
-      ) : (
-        isSuccess && (
-          <>
-            <ul className={css.productsList}>
-              {data.products?.map((product: IProduct) => (
-                <ProductCard
-                  key={product._id}
-                  product={product}
-                />
-              ))}
-            </ul>
-            <ProductsPagination />
-          </>
-        )
+      {isSuccess && (
+        <>
+          <ul className={css.productsList}>
+            {data.products.map((product: IProduct) => (
+              <ProductCard
+                key={product._id}
+                product={product}
+              />
+            ))}
+          </ul>
+          <ProductsPagination />
+        </>
       )}
     </>
   );
