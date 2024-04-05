@@ -1,4 +1,4 @@
-import { AppDispatch, RootState } from '@/app/appStore';
+import { AppDispatch, RootState } from '@/lib/features/storesInit/appStore';
 import {
   useSelector,
   type TypedUseSelectorHook,
