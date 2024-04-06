@@ -23,6 +23,7 @@ export default function UserSection({ className }: { className?: string }) {
     dispatch(resetCart());
     dispatch(resetProduct());
     dispatch(resetFavorite());
+    localStorage.removeItem('user');
   }, []);
 
   useEffect(() => {
