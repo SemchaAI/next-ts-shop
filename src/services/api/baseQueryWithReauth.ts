@@ -22,7 +22,6 @@ export type QueryReturnValue<T = unknown, E = unknown, M = unknown> =
 // import { setToken } from '@/stores/user.slice';
 import { IAuthResponse, ILogoutResponse } from '@/models/user';
 import { USER_ROUTE_REFRESH, USER_ROUTE_LOGOUT } from '@/lib/utils/consts';
-import { reset, setToken } from '@/stores/user.slice';
 
 const AUTH_ERROR_CODES = new Set([401]);
 
@@ -55,6 +54,7 @@ export async function baseQueryWithReauth(
           payload: refreshResult.data.accessToken,
         });
         localStorage.setItem('user', JSON.stringify(refreshResult.data));
+
         // Retry the initial query
         result = await baseQuery(args, api, extraOptions);
       } else {
