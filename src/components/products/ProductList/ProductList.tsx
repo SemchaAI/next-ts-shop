@@ -6,6 +6,7 @@ import ProductCard from '../ProductCard/ProductCard';
 import ProductCardSkeleton from '../ProductCard/ProductCardSkeleton';
 import { useAppSelector } from '@/lib/hooks';
 import ProductsPagination from '@/components/pagination/ProductsPagination';
+import ProductsPaginationSkeleton from '@/components/pagination/skeleton/ProductPaginationSkeleton';
 export default function ProductList() {
   // limit of products on page
   const limit = 3;
@@ -29,11 +30,14 @@ export default function ProductList() {
 
   if (isFetching) {
     return (
-      <ul className={css.productsList}>
-        {[...Array(limit)].map((_, i) => (
-          <ProductCardSkeleton key={i} />
-        ))}
-      </ul>
+      <>
+        <ul className={css.productsList}>
+          {[...Array(limit)].map((_, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
+        </ul>
+        <ProductsPaginationSkeleton />
+      </>
     );
   }
   if (isSuccess && data.products.length === 0) {
