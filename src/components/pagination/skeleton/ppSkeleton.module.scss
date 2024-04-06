@@ -13,7 +13,9 @@
     var(--on-white-skeleton);
   background-size: 200% 100%;
   background-position-x: 180%;
-  animation: 1s loading ease-in-out infinite;
+  &:global {
+    animation: 1s loading ease-in-out infinite;
+  }
 }
 .fakePagination {
   padding: 5px 20px;
