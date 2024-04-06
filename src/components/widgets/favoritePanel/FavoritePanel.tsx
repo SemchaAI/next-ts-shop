@@ -17,12 +17,8 @@ const url = process.env.NEXT_PUBLIC_BASE_URL_BD;
 export default function FavoritePanel() {
   const { items: favorItems } = useAppSelector((state) => state.favorite);
   const dispatch = useAppDispatch();
-  console.log('init favorite');
-  console.log('favorItems', favorItems);
 
-  useEffect(() => {
-    dispatch(initFavorite());
-  }, [dispatch]);
+  console.log('favorPanel');
 
   const removeHandler = (item: IProduct) => {
     dispatch(removeFavorite(item));

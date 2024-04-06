@@ -4,8 +4,10 @@ import MainLink from '../links/MainLink';
 import { useGetCartProductsQuery } from '@/services/cartApi';
 // import { useEffect, useRef, useState } from 'react';
 
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Badge from '../badge/Badge';
+import { useEffect } from 'react';
+import { initFavorite } from '@/stores/favorite.slice';
 
 export default function HeaderNavigation() {
   const { isAuth, user } = useAppSelector((state) => state.user);
@@ -16,6 +18,13 @@ export default function HeaderNavigation() {
   });
   const inCart = useAppSelector((state) => state.cart.items.length);
   const inFavorite = useAppSelector((state) => state.favorite.items.length);
+
+  const dispatch = useAppDispatch();
+  console.log('init favorite');
+
+  useEffect(() => {
+    dispatch(initFavorite());
+  }, [dispatch]);
 
   console.log('nav');
   return (
