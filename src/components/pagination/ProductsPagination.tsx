@@ -101,16 +101,18 @@ export default function ProductsPagination() {
           pageVariant === EPageVariant.FIRST) && (
           <div style={{ margin: '0 5px' }}>...</div>
         )}
-        <li>
-          <button
-            onClick={() => toPage(total)}
-            className={`${css.paginationListBtn} ${
-              page === total ? css.active : ''
-            }`}
-          >
-            {total}
-          </button>
-        </li>
+        {total !== 1 && (
+          <li>
+            <button
+              onClick={() => toPage(total)}
+              className={`${css.paginationListBtn} ${
+                page === total ? css.active : ''
+              }`}
+            >
+              {total}
+            </button>
+          </li>
+        )}
       </ul>
       <button
         onClick={() => nextPage()}
