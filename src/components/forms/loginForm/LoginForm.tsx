@@ -18,10 +18,15 @@ import {
   ReqMin5Max10Validation,
   emailValidation,
 } from '@/lib/utils/validationObjects';
-import { useAppDispatch } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { deleteError, setError } from '@/stores/errors.slice';
+import { IError, IRTKError } from '@/models/errors';
 
 export default function LoginForm() {
   const dispatch = useAppDispatch();
+
+  const { lastAI } = useAppSelector((state) => state.errors);
+
   // START DYNAMIC DATA BY PATH
   const path = usePathname();
   const [isLogin, setIsLogin] = useState<boolean>();
@@ -34,8 +39,28 @@ export default function LoginForm() {
   const Title = isLogin ? 'Вход' : 'Регистрация';
   // END DYNAMIC DATA BY PATH
 
-  const [sendLogin] = useLoginMutation();
+  const [sendLogin, { error }] = useLoginMutation();
   const [sendRegister] = useRegisterMutation();
+
+  //  BAD REALIZATION FOR ME
+  // IDK HOW TO INIT DELETE ERROR IN RTK
+  // CANNOT USE REDUCER IN ANOTHER ONE
+
+  useEffect(() => {
+    if (error && 'data' in error) {
+      console.log('error-----', error);
+      const { data } = error as IRTKError;
+      dispatch(
+        setError({
+          message: data.message,
+          critical: false,
+        })
+      );
+      setTimeout(() => {
+        dispatch(deleteError(lastAI));
+      }, 10000);
+    }
+  }, [error, dispatch]);
 
   const {
     register,
