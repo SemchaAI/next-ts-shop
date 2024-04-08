@@ -54,6 +54,7 @@ export default function HomeBanner() {
   return (
     <div className={css.swiperContainer}>
       <swiper-container
+        id="homeBanner"
         slides-per-view="1"
         ref={swiperRef}
         init="false"
@@ -81,6 +82,7 @@ export default function HomeBanner() {
                 priority={true}
                 alt="Xiaomi 14 mi desktop"
                 src="/banners/Xiaomi_14_mi-desktop.webp"
+                quality={80}
                 width={1340}
                 height={560}
               />
@@ -145,16 +147,10 @@ export default function HomeBanner() {
         </swiper-slide>
       </swiper-container>
       <div className={css.pagination}></div>
-      <button
-        aria-hidden="true"
-        className={`${css.swiperPrev} ${css.swiperNav}`}
-      >
+      <button className={`${css.swiperPrev} ${css.swiperNav}`}>
         <ChevronLeft className={css.chevron} />
       </button>
-      <button
-        aria-hidden="true"
-        className={`${css.swiperNext} ${css.swiperNav}`}
-      >
+      <button className={`${css.swiperNext} ${css.swiperNav}`}>
         <ChevronRight className={css.chevron} />
       </button>
     </div>
