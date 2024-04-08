@@ -3,6 +3,7 @@ export interface IBtn {
   icon?: boolean;
   type?: 'submit' | 'button';
   disabled?: boolean;
+  label?: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 

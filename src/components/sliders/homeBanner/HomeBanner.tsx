@@ -37,6 +37,12 @@ export default function HomeBanner() {
         },
       },
       loop: true,
+      a11y: {
+        enabled: true,
+        prevSlideMessage: 'Предыдущий слайд',
+        nextSlideMessage: 'Следующий слайд',
+        id: 'homeBanner',
+      },
     };
 
     if (swiperContainer) {

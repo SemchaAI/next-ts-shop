@@ -59,13 +59,13 @@ export default function UserSection({ className }: { className?: string }) {
               version="contain"
               onClick={logoutHandler}
             >
-              Logout
+              Выход
             </MainBtn>
             <MainBtn
               onClick={clickHandler}
               version="contain"
             >
-              Test -{data === undefined ? 'false' : 'true'}
+              Тест -{data === undefined ? 'false' : 'true'}
             </MainBtn>
           </div>
         )

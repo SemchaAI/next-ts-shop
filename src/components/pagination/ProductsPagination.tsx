@@ -67,6 +67,7 @@ export default function ProductsPagination() {
       <button
         onClick={() => prevPage()}
         className={css.paginationListBtn}
+        aria-label="Предыдущая страница"
       >
         <ChevronLeft />
       </button>
@@ -83,7 +84,7 @@ export default function ProductsPagination() {
         </li>
         {(pageVariant === EPageVariant.MIDDLE ||
           pageVariant === EPageVariant.LAST) && (
-          <div style={{ margin: '0 5px' }}>...</div>
+          <li style={{ margin: '0 5px' }}>...</li>
         )}
         {pages.map((item, i) => (
           <li key={item}>
@@ -99,7 +100,7 @@ export default function ProductsPagination() {
         ))}
         {(pageVariant === EPageVariant.MIDDLE ||
           pageVariant === EPageVariant.FIRST) && (
-          <div style={{ margin: '0 5px' }}>...</div>
+          <li style={{ margin: '0 5px' }}>...</li>
         )}
         {total !== 1 && (
           <li>
@@ -108,6 +109,7 @@ export default function ProductsPagination() {
               className={`${css.paginationListBtn} ${
                 page === total ? css.active : ''
               }`}
+              aria-label="Последняя страница"
             >
               {total}
             </button>
@@ -117,6 +119,7 @@ export default function ProductsPagination() {
       <button
         onClick={() => nextPage()}
         className={css.paginationListBtn}
+        aria-label="Следующая страница"
       >
         <ChevronRight />
       </button>

@@ -14,7 +14,7 @@ export function MainHeader() {
             className={`${css.logoLink} ${css.headerBlock}`}
             href="/"
           >
-            LOGO
+            ЛОГО
           </Link>
           <UserSection className={css.headerBlock} />
           <div className={css.headerBlock}>

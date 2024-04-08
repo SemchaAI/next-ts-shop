@@ -29,20 +29,20 @@ export default function HeaderNavigation() {
   console.log('nav');
   return (
     <nav className={css.headerNav}>
-      {isAdmin && <MainLink to="/admin">Admin</MainLink>}
+      {isAdmin && <MainLink to="/admin">Админ</MainLink>}
       {isAuth && (
         <>
           <MainLink to="/cart">
-            Cart
+            Корзина
             <Badge inBadge={inCart} />
           </MainLink>
           <MainLink to="/favorite">
-            Favorite
+            Избранное
             <Badge inBadge={inFavorite} />
           </MainLink>
         </>
       )}
-      <MainLink to="/login">Sign in/up</MainLink>
+      <MainLink to="/login">Вход</MainLink>
     </nav>
   );
 }

@@ -55,9 +55,9 @@ export default function ProductCard({ product }: { product: IProduct }) {
           height={200}
           priority={true}
           src={url + `/` + product.img}
-          alt={product.title}
+          alt={product.description}
         />
-        <h3 className={css.productTitle}>{product.title}</h3>
+        <h2 className={css.productTitle}>{product.title}</h2>
       </Link>
       <div className={css.productInfo}>
         <div className={css.productContainer}>
@@ -75,6 +75,7 @@ export default function ProductCard({ product }: { product: IProduct }) {
                 icon={true}
                 version="outline"
                 onClick={() => deleteOne({ userId, productId })}
+                label="Удалить из корзины"
               >
                 <CloseIcon
                   width={24}
@@ -92,12 +93,14 @@ export default function ProductCard({ product }: { product: IProduct }) {
               <button
                 onClick={() => favoriteHandler(product)}
                 className={css.productBtnContainer}
+                aria-label="Добавить или удалить из избранного"
               >
                 <FavoriteIcon className={`${css.favoriteIcon} ${favorClass}`} />
               </button>
               <button
                 onClick={() => addOne({ userId, productId })}
                 className={css.productBtnContainer}
+                aria-label="Добавить в корзину"
               >
                 <BtnPlus />
               </button>

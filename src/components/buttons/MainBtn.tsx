@@ -10,16 +10,17 @@ export default function MainBtn({
   icon = false,
   type = 'button',
   disabled = false,
+  label = 'кнопка',
   onClick,
 }: IBtnProps) {
   const btnClass = `${css.button} ${css[version]} ${icon ? css.icon : ''}`;
-
   return (
     <button
       type={type}
       className={btnClass}
       disabled={disabled}
       onClick={onClick}
+      aria-label={label}
     >
       {children}
     </button>
