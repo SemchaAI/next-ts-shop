@@ -44,16 +44,16 @@ export const favoriteSlice = createSlice({
     addFavorite: (state, action: PayloadAction<IProduct>) => {
       console.log('add');
       state.items.push(action.payload);
-      document.cookie = 'favorite=' + JSON.stringify(state.items);
-      // localStorage.setItem('favorite', JSON.stringify(state.items));
+      //document.cookie = 'favorite=' + JSON.stringify(state.items);
+      localStorage.setItem('favorite', JSON.stringify(state.items));
     },
     removeFavorite: (state, action: PayloadAction<IProduct>) => {
       console.log('remove');
       state.items = state.items.filter(
         (item) => item._id !== action.payload._id
       );
-      document.cookie = 'favorite=' + JSON.stringify(state.items);
-      // localStorage.setItem('favorite', JSON.stringify(state.items));
+      //document.cookie = 'favorite=' + JSON.stringify(state.items);
+      localStorage.setItem('favorite', JSON.stringify(state.items));
     },
     favoriteHandler: (state, action: PayloadAction<IProduct>) => {
       console.log('payload', action.payload);
