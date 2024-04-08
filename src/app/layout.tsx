@@ -6,6 +6,7 @@ import { MainHeader } from '@/components/headers/MainHeader';
 import MainFooter from '@/components/footers/MainFooter';
 import './assets/main.scss';
 import { metaHomeLayout } from '@/lib/utils/metadata';
+import ErrorSection from '@/components/error/ErrorSection';
 
 // will add in future this method for load fonts
 // const inter = Inter({ subsets: ['latin'] });
@@ -33,6 +34,7 @@ export default function RootLayout({
             {children}
           </main>
           <MainFooter />
+          <ErrorSection />
         </Providers>
       </body>
     </html>
