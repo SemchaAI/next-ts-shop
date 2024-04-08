@@ -4,6 +4,7 @@ import { userSlice } from '@/stores/user.slice';
 import { favoriteSlice } from '@/stores/favorite.slice';
 import { cartSlice } from '@/stores/cart.slice';
 import { productSlice } from '@/stores/product.slice';
+import { errorsSlice } from '@/stores/errors.slice';
 
 // very important to be initialized here
 import { baseApi } from '@/services/api/baseApi';
@@ -13,5 +14,6 @@ export const rootReducer = combineReducers({
   [userSlice.name]: userSlice.reducer,
   [favoriteSlice.name]: favoriteSlice.reducer,
   [cartSlice.name]: cartSlice.reducer,
+  [errorsSlice.name]: errorsSlice.reducer,
   [baseApi.reducerPath]: baseApi.reducer,
 });
