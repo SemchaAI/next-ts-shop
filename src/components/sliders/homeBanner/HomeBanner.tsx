@@ -145,10 +145,16 @@ export default function HomeBanner() {
         </swiper-slide>
       </swiper-container>
       <div className={css.pagination}></div>
-      <button className={`${css.swiperPrev} ${css.swiperNav}`}>
+      <button
+        aria-hidden="true"
+        className={`${css.swiperPrev} ${css.swiperNav}`}
+      >
         <ChevronLeft className={css.chevron} />
       </button>
-      <button className={`${css.swiperNext} ${css.swiperNav}`}>
+      <button
+        aria-hidden="true"
+        className={`${css.swiperNext} ${css.swiperNav}`}
+      >
         <ChevronRight className={css.chevron} />
       </button>
     </div>
