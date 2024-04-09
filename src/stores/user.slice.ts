@@ -16,18 +16,6 @@ const initialState: IUserStore = {
   accessToken: null,
 };
 
-// let user;
-// if (typeof window !== 'undefined') {
-//   user = localStorage.getItem('user');
-//   if (user) {
-//     user = JSON.parse(user);
-//     initialState.user = user.user;
-//     initialState.accessToken = user.accessToken;
-//     initialState.isAuth = true;
-//   }
-// }
-// console.log(user);
-
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -60,13 +48,6 @@ export const userSlice = createSlice({
     );
   },
 });
-
-// export const getUser = (state: IUserSlice) => state.user.user;
-// export const getIsAuth = (state: IUserSlice) => state.user.isAuth;
-// export const getIsLoading = (state: IUserSlice) => state.user.isLoading;
-
-// selectors
-// export const { getUser, getIsAuth, getIsLoading } = userSlice.selectors;
 
 // actions
 export const { setAuth, setToken, setUser, setLoading, reset, isAdmin } =
