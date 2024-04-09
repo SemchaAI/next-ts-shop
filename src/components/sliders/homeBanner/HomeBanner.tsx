@@ -111,6 +111,7 @@ export default function HomeBanner() {
                 priority={true}
                 alt="Xiaomi 14 mi desktop"
                 src="/banners/Xiaomi_14_mi-desktop.webp"
+                quality={80}
                 width={1340}
                 height={560}
               />
@@ -139,6 +140,7 @@ export default function HomeBanner() {
                 priority={true}
                 alt="Xiaomi 14 mi desktop"
                 src="/banners/Xiaomi_14_mi-desktop.webp"
+                quality={80}
                 width={1340}
                 height={560}
               />
