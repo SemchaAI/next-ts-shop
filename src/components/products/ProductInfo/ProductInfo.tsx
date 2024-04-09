@@ -27,8 +27,8 @@ export default function ProductInfo() {
   const gallery = thumbnailsGuard
     ? [...product.thumbnails.img, product.img]
     : product && product.img !== undefined
-    ? [product.img]
-    : ['src/to/placeholder.png'];
+      ? [product.img]
+      : ['src/to/placeholder.png'];
 
   const swiperRef = useRef(null);
   const secSwiperRef = useRef(null);
@@ -41,7 +41,7 @@ export default function ProductInfo() {
               {thumbnailsGuard && (
                 <swiper-container
                   ref={swiperRef}
-                  className={css.productSwiper2}
+                  class={css.productSwiper2}
                   direction="vertical"
                   slides-per-view="3"
                   space-between="0"
@@ -68,7 +68,7 @@ export default function ProductInfo() {
 
               <swiper-container
                 ref={secSwiperRef}
-                className={css.productSwiper}
+                class={css.productSwiper}
                 navigation="true"
                 slides-per-view="1"
                 // swiper element for thumbs-swiper need same class
