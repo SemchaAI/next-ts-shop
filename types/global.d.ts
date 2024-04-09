@@ -8,6 +8,7 @@ declare namespace JSX {
       direction?: string;
       init?: string;
       className?: string;
+      class?: string;
       // Add more properties
     };
     'swiper-slide': React.DetailedHTMLProps<
