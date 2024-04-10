@@ -1,6 +1,6 @@
 {
   "name": "next-ts-shop",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "browserslist": [
     ">0.3%",
     "not dead",
