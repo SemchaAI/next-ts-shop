@@ -3,6 +3,10 @@ export interface IError {
   critical: boolean;
   id: number;
 }
+export interface IServerError {
+  message: string;
+  errors: [];
+}
 
 export interface IErrors {
   errors: IError[];
