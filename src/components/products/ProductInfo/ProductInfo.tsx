@@ -2,7 +2,7 @@
 import { useRef } from 'react';
 
 import css from './productInfo.module.scss';
-import { IInfo, IProduct } from '@/models/products';
+import type { IInfo, IProduct } from '@/models/products';
 import Image from 'next/image';
 
 interface IProps {
