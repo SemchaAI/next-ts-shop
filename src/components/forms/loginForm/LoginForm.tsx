@@ -32,7 +32,7 @@ export default function LoginForm() {
   const [isLogin, setIsLogin] = useState<boolean>();
 
   useEffect(() => {
-    setIsLogin(path === '/login');
+    setIsLogin(path.includes('/login'));
   }, [path]);
 
   const dynamicLabel = isLogin ? 'Имя/Email' : 'Имя';
