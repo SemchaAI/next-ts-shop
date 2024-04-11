@@ -9,7 +9,17 @@ import Badge from '../badge/Badge';
 import { useEffect } from 'react';
 import { initFavorite } from '@/stores/favorite.slice';
 
-export default function HeaderNavigation() {
+interface IProps {
+  navigationText: {
+    cart: string;
+    favorite: string;
+    admin: string;
+    login: string;
+  };
+}
+
+export default function HeaderNavigation({ navigationText }: IProps) {
+  console.log('navigationText', navigationText);
   const { isAuth, user } = useAppSelector((state) => state.user);
   const isAdmin = user.role === 'ADMIN';
   useGetCartProductsQuery(user.id, {
@@ -29,20 +39,20 @@ export default function HeaderNavigation() {
   console.log('nav');
   return (
     <nav className={css.headerNav}>
-      {isAdmin && <MainLink to="/admin">Админ</MainLink>}
+      {isAdmin && <MainLink to="/admin">{navigationText.admin}</MainLink>}
       {isAuth && (
         <>
           <MainLink to="/cart">
-            Корзина
+            {navigationText.cart}
             <Badge inBadge={inCart} />
           </MainLink>
           <MainLink to="/favorite">
-            Избранное
+            {navigationText.favorite}
             <Badge inBadge={inFavorite} />
           </MainLink>
         </>
       )}
-      <MainLink to="/login">Вход</MainLink>
+      <MainLink to="/login">{navigationText.login}</MainLink>
     </nav>
   );
 }
