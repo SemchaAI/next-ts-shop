@@ -1,0 +1,90 @@
+.customSelectContainer {
+  // min-width: 100px;
+  width: fit-content;
+  height: 40px;
+
+  position: relative;
+
+  @include body1Typo;
+
+  background-color: var(--background);
+  border-radius: 8px;
+  cursor: pointer;
+
+  box-shadow:
+    rgba(112, 112, 112, 0.16) 0px 10px 36px 0px,
+    rgba(112, 112, 112, 0.06) 0px 0px 0px 1px;
+}
+.inputClick {
+  display: flex;
+  gap: 5px;
+  height: 40px;
+  overflow: hidden;
+  padding: 8px 10px;
+  border-radius: 8px;
+
+  @include transition;
+  &:hover,
+  &:focus {
+    background-color: var(--primary);
+    color: var(--background);
+    .icon {
+      fill: var(--background);
+    }
+  }
+}
+.defaultValue {
+  display: flex;
+  justify-content: center;
+}
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+}
+.icon {
+  @include transition;
+  fill: var(--primary);
+}
+.menu {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
+
+  background-color: var(--background);
+  border-radius: 8px;
+  @include transition;
+  @include body1Typo;
+}
+.menuItem {
+  padding: 8px 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  @include transition;
+
+  &:hover,
+  &:focus {
+    background-color: var(--primary);
+    color: var(--background);
+  }
+  &:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    // half of default padding
+    padding-bottom: 4px;
+  }
+  &:last-child {
+    // half of default padding
+    padding-top: 4px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}
+.selected {
+  pointer-events: none;
+  background-color: var(--on-primary-disabled-accent);
+}
