@@ -3,8 +3,19 @@ import { ChangeTheme } from '../theme/ChangeTheme';
 import css from './mainHeader.module.scss';
 import UserSection from './UserSection';
 import HeaderNavigation from '../navigations/HeaderNavigation';
+import LocaleSwitcher from '../lang/LocaleSwitcher';
+import { useTranslations } from 'next-intl';
 
 export function MainHeader() {
+  const t = useTranslations('home');
+
+  const navigationText = {
+    cart: t('navigation.cart'),
+    favorite: t('navigation.favorite'),
+    admin: t('navigation.admin'),
+    login: t('navigation.login'),
+  };
+
   console.log('header');
   return (
     <header className={css.header}>
@@ -18,7 +29,10 @@ export function MainHeader() {
           </Link>
           <UserSection className={css.headerBlock} />
           <div className={css.headerBlock}>
-            <HeaderNavigation />
+            <HeaderNavigation navigationText={navigationText} />
+            <div style={{ display: 'flex', minWidth: '100px' }}>
+              <LocaleSwitcher />
+            </div>
             <ChangeTheme />
           </div>
         </div>
