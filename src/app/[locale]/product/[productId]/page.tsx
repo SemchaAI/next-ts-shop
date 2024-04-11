@@ -12,7 +12,6 @@ import css from './productPage.module.scss';
 
 type Props = {
   params: { productId: string };
-  product: IProduct | IServerError;
 };
 
 export async function generateMetadata(
@@ -25,15 +24,16 @@ export async function generateMetadata(
   // fetch data
   const product = await getProduct({ productId: id });
 
-  if ('message' in product)
+  if ('message' in product) {
     return {
       title: 'Error',
       description: product.message,
     };
-  return {
-    title: product.title,
-    description: product.description,
-  };
+  } else
+    return {
+      title: product.title,
+      description: product.description,
+    };
 }
 
 export default async function Product({ params }: Props) {
@@ -57,7 +57,7 @@ export default async function Product({ params }: Props) {
       ? [product.img]
       : ['src/to/placeholder.png'];
 
-  console.log('product', product);
+  //console.log('product', product);
 
   return (
     <section className={css.product}>

@@ -1,7 +1,7 @@
 'use client';
 import { Provider as ReduxProvider } from 'react-redux';
 
-import { appStore } from '../lib/features/storesInit/appStore';
+import { appStore } from '../../lib/features/storesInit/appStore';
 import { ThemeProvider } from 'next-themes';
 
 import { register } from 'swiper/element/bundle';
