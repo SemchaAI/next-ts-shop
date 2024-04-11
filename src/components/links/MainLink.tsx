@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import css from './mainLink.module.scss';
 
 export interface ILink {
