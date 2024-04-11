@@ -1,0 +1,24 @@
+{
+  "home": {
+    "title": "All products",
+    "test": "test",
+    "Metadata": {
+      "description": "Micro frontend example of shop on next 14",
+      "title": "Next ts shop | Home"
+    },
+    "navigation": {
+      "admin": "Admin",
+      "cart": "Cart",
+      "favorite": "Favorite",
+      "login": "Sign in/up"
+    }
+  },
+  "Metadata": {
+    "description": "Micro frontend example of shop on next 14",
+    "title": "Next ts shop | Home"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, ru {Русский} en {English} other {Unknown}}"
+  }
+}
