@@ -5,6 +5,7 @@ import UserSection from './UserSection';
 import HeaderNavigation from '../navigations/HeaderNavigation';
 import LocaleSwitcher from '../lang/LocaleSwitcher';
 import { useTranslations } from 'next-intl';
+import CustomSelect from '../lang/CustomSelect';
 
 export function MainHeader() {
   const t = useTranslations('home');
