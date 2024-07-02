@@ -1,3 +1,4 @@
+'use client';
 import { combineReducers } from '@reduxjs/toolkit';
 
 import { userSlice } from '@/stores/user.slice';
@@ -6,7 +7,7 @@ import { cartSlice } from '@/stores/cart.slice';
 import { productSlice } from '@/stores/product.slice';
 import { errorsSlice } from '@/stores/errors.slice';
 
-// very important to be initialized here
+// very important to be initialized here(LAST)
 import { baseApi } from '@/services/api/baseApi';
 
 export const rootReducer = combineReducers({

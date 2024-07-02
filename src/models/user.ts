@@ -1,38 +1,47 @@
-export interface IUser {
-  id: string;
-  isActivated: boolean;
+interface IUser extends IUserRole {
   email: string;
+  password: string;
   name: string;
-  role: string;
+  id: string | null;
+  isActivated: boolean;
 }
 
-export interface IUserStore {
-  user: IUser;
-  isAuth: boolean;
-  isLoading: boolean;
-  accessToken: string | null;
+interface IUserRole {
+  role: 'ADMIN' | 'USER';
 }
-export interface IUserSlice {
-  user: IUserStore;
-}
-
-// RES REQ
-export interface IAuthResponse {
+interface ITokens {
   accessToken: string;
   refreshToken: string;
+}
+
+//RESPONSE
+
+interface IUserResponse extends ITokens {
   user: IUser;
 }
-export interface ILogoutResponse {
+interface ILogoutResponse {
   acknowledged: boolean;
   deletedCount: number;
 }
 
-export interface LoginRequest {
+//REQUESTS
+
+interface LoginRequest {
   email: string;
   password: string;
 }
-export interface RegisterRequest {
+interface RegisterRequest {
   name: string;
   email: string;
   password: string;
 }
+
+export type {
+  IUser,
+  IUserRole,
+  ITokens,
+  RegisterRequest,
+  LoginRequest,
+  IUserResponse,
+  ILogoutResponse,
+};

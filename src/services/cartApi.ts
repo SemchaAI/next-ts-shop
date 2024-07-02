@@ -4,12 +4,8 @@ import {
   CART_ROUTE_DELETE,
   CART_TAG,
 } from '@/lib/utils/consts';
+import type { IUserProduct } from '@/models/cart-favorite';
 import { baseApi } from '@/services/api/baseApi';
-
-interface IAddOne {
-  userId: string;
-  productId: string;
-}
 
 export const cartApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -23,7 +19,7 @@ export const cartApi = baseApi.injectEndpoints({
       providesTags: [CART_TAG],
     }),
     addOne: build.mutation({
-      query: (body: IAddOne) => ({
+      query: (body: IUserProduct) => ({
         url: CART_ROUTE_ADD,
         method: 'POST',
         body,
@@ -31,7 +27,7 @@ export const cartApi = baseApi.injectEndpoints({
       invalidatesTags: [CART_TAG],
     }),
     deleteOne: build.mutation({
-      query: ({ userId, productId }: IAddOne) => ({
+      query: ({ userId, productId }: IUserProduct) => ({
         url: CART_ROUTE_DELETE,
         method: 'DELETE',
         body: { userId, productId },
@@ -42,7 +38,7 @@ export const cartApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useGetCartProductsQuery,
+  useLazyGetCartProductsQuery,
   useAddOneMutation,
   useDeleteOneMutation,
 } = cartApi;

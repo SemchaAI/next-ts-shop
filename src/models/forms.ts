@@ -1,11 +1,3 @@
-import { IProduct } from './products';
-
-export interface IForm {
-  email: string;
-  password: string;
-  name: string;
-}
-
 export interface IFormType {
   name: string;
 }
@@ -27,28 +19,21 @@ export interface IFormProduct {
   ];
 }
 
-// extends Omit<IProduct, '_id'>
-// export interface IProduct {
-//   _id: string;
-//   title: string;
-//   price: number;
-//   // rating: number
-//   img: string;
-//   typeId: string;
-//   // brandId: string
-//   description: string;
-//   cnt: number;
-//   info: IInfo[];
-//   thumbnails: IThumbnails;
-// }
+export interface IFormRateUpdate extends IFormRate {
+  difference: number;
+}
+export interface IFormRate extends IRateRefs {
+  rate: number;
+  message: string;
+}
+export interface IRateRefs {
+  userId: string;
+  productId: string;
+}
+
 export interface IInfo {
   // _id: string;
   title: string;
   description: string;
   // productId: string;
 }
-// export interface IThumbnails {
-//   _id: string;
-//   img: string[];
-//   productId: string;
-// }

@@ -1,0 +1,13 @@
+.theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.theme svg {
+  fill: var(--primary);
+  stroke: var(--primary);
+}

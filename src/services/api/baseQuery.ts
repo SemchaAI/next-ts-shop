@@ -14,7 +14,6 @@ export const baseQuery: BaseQueryFn<
   NonNullable<unknown>,
   FetchBaseQueryMeta
 > = fetchBaseQuery({
-  // I DONT NEED  ENV VAR HERE BECAUSE  IT WILL BE RENDERED ON SERVER
   baseUrl: 'http://localhost:5000/api',
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {

@@ -1,0 +1,16 @@
+.section {
+}
+
+.sectionContainer {
+  margin-top: 40px;
+}
+
+.sectionTitle {
+  text-align: center;
+
+  @include headline4Typo;
+}
+.formContainer {
+  margin: 40px auto 0 auto;
+  max-width: 768px;
+}

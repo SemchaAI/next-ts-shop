@@ -1,0 +1,48 @@
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  @include body1Typo;
+  @include transition;
+
+  color: var(--primary);
+  &.router-link-active {
+    color: var(--secondary);
+  }
+  &:hover,
+  &:focus {
+    color: var(--primary-focused);
+  }
+}
+
+.button {
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+.text {
+  &:hover,
+  &:focus {
+    color: var(--primary-focused);
+  }
+}
+.outline {
+  border: 1px solid var(--btn-outline-border);
+  &:hover,
+  &:focus {
+    border-color: var(--background);
+  }
+}
+.contain {
+  color: var(--on-primary);
+  background: var(--primary);
+  &:hover,
+  &:focus {
+    color: var(--primary);
+    background: var(--on-primary);
+  }
+}

@@ -1,0 +1,33 @@
+.rateListContainer {
+  width: 100%;
+  height: 307px;
+
+  background-color: var(--surface);
+  padding: 10px 10px 40px 10px;
+  border-radius: 10px;
+}
+.rateTitle {
+  @include headline4Typo;
+  color: var(--primary);
+}
+.rateList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  margin-top: 20px;
+  padding: 0;
+}
+.paginationContainer {
+  margin-top: 20px;
+}
+.zeroProducts {
+  width: 100%;
+  height: 200px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include headline4Typo;
+  color: var(--primary);
+}

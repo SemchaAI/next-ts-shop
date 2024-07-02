@@ -2,6 +2,7 @@ import { IProduct, IType } from '@/models/products';
 import { productApi } from '@/services/productApi';
 
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { stat } from 'fs';
 interface IProductSlice {
   products: IProduct[];
   brands: IType[];
@@ -45,6 +46,7 @@ export const productSlice = createSlice({
       type: PayloadAction<{ _id: string | undefined }>
     ) => {
       state.selectedType = type.payload;
+      state.page = 1;
     },
     reset: () => initialState,
   },
@@ -76,6 +78,24 @@ export const productSlice = createSlice({
         state.types.push(payload);
       }
     );
+    // builder.addMatcher(
+    //   productApi.endpoints.createRate.matchFulfilled,
+    //   (state, { payload }) => {
+    //     const product = state.products.find(
+    //       (item) => item._id === payload.productId
+    //     );
+    //     if (product?.rating) {
+    //       product.rating = {
+    //         rates: product.rating.rates + 1,
+    //         mediumRate:
+    //           (product.rating.mediumRate * product.rating.rates +
+    //             payload.rate) /
+    //             product.rating.rates +
+    //           1,
+    //       };
+    //     }
+    //   }
+    // );
   },
 });
 

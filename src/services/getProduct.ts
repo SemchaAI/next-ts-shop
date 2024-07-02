@@ -8,7 +8,7 @@ export const getProduct = async (params: {
   let product;
   try {
     product = await fetch(
-      `http://localhost:5000/api/product/${params.productId}`
+      `${process.env.NEXT_PUBLIC_BASE_URL_BD}/api/product/${params.productId}`
     );
     product = await product.json();
   } catch (error) {

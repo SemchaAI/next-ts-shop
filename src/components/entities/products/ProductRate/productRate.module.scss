@@ -1,0 +1,27 @@
+.productRate {
+  display: flex;
+  align-items: center;
+}
+
+.productInfoLabel {
+  margin-right: 10px;
+  color: var(--primary-focused);
+}
+
+.rateContainer {
+  display: flex;
+  flex-direction: column;
+}
+.ratingRow {
+  display: flex;
+  gap: 20px;
+}
+.ratingInfo {
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
+}
+.rate {
+  color: var(--primary-focused);
+  @include headline4Typo;
+}

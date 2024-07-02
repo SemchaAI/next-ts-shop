@@ -1,0 +1,51 @@
+.sideBar {
+  width: 25%;
+  flex-grow: 1;
+  position: relative;
+  // top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: var(--surface);
+  height: fit-content;
+  @include body1Typo;
+  box-shadow: var(--dp-0);
+}
+.type {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  @include transition;
+
+  &:hover,
+  &:focus {
+    color: var(--on-surface);
+  }
+}
+.activeType {
+  background-color: var(--primary);
+  color: var(--on-surface);
+}
+
+@media (max-width: 768px) {
+  .sideBar {
+    top: 0;
+    width: calc(100dvw - 20px);
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    padding: 10px;
+    border-radius: 20px;
+    height: fit-content;
+    gap: 10px;
+
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    background: var(--gd-sidebar);
+  }
+  .type {
+    padding: 5px 10px;
+    border-radius: 20px;
+  }
+}

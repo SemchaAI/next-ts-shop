@@ -1,86 +1,65 @@
+import type { ISlice } from '@/models/cart-favorite';
 import { IProduct } from '@/models/products';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-// import { cookies } from 'next/headers';
+import { favoriteApi } from '@/services/favoriteApi';
+import { userApi } from '@/services/userApi';
 
-interface IFavoriteSlice {
-  items: IProduct[];
-}
-const initialState: IFavoriteSlice = {
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
+const initialState: ISlice = {
+  _id: null,
   items: [],
 };
-
-// if (typeof window !== 'undefined') {
-//   const favorStore = localStorage.getItem('favorite');
-//   // const cookieStore = cookies().get('favorite');
-//   // if (cookieStore !== undefined) {
-//   //   initialState.items = JSON.parse(cookieStore.value);
-//   // }
-//   if (favorStore !== null) {
-//     initialState.items = JSON.parse(favorStore);
-//   }
-// }
-
-// #######################################
-// I DOESNT FOUND BEST WAY FOR SYNC FAVORITE
-// ONLY TO STORE IT ON SERVER
-// NOW I USE LOCALSTORAGE BECAUSE DONT WANT TO CHANGE BACKEND
-// I USE IT IN 3 MORE PROJECTS
-// NOW BECAUSE OF SYNC BETWEEN CLIENT AND SERVER
-// FAVOR PANEL  RERENDER TWICE (WITH INIT STATE [] AND AFTER IT CHANGES)
-// COOKIES DOESNT WANT TO WORK OUTSIDE PAGE.TSX COMPONENT
 
 export const favoriteSlice = createSlice({
   name: 'favorite',
   initialState,
 
   reducers: {
-    initFavorite: (state) => {
-      // console.log(document.cookie);
-      const favoriteStore = localStorage.getItem('favorite');
-      if (favoriteStore) {
-        state.items = JSON.parse(favoriteStore);
-      }
-    },
-    addFavorite: (state, action: PayloadAction<IProduct>) => {
-      console.log('add');
-      state.items.push(action.payload);
-      //document.cookie = 'favorite=' + JSON.stringify(state.items);
-      localStorage.setItem('favorite', JSON.stringify(state.items));
-    },
-    removeFavorite: (state, action: PayloadAction<IProduct>) => {
-      console.log('remove');
-      state.items = state.items.filter(
-        (item) => item._id !== action.payload._id
-      );
-      //document.cookie = 'favorite=' + JSON.stringify(state.items);
-      localStorage.setItem('favorite', JSON.stringify(state.items));
-    },
-    favoriteHandler: (state, action: PayloadAction<IProduct>) => {
-      console.log('payload', action.payload);
-      const reducersPath = favoriteSlice.actions;
-      console.log(isFavorite(state, action.payload));
-      // isFavorite(state, action.payload)
-      //   ? reducersPath.removeFavorite(action.payload)
-      reducersPath.addFavorite(action.payload);
-    },
+    // setCartProducts: (state, action: PayloadAction<IProduct[]>) => {
+    //   state.items = action.payload;
+    // },
     reset: () => initialState,
+  },
+  selectors: {
+    isInFavorite: (state, _id: string | null) => {
+      if (!_id) return false;
+      const event = (item: IProduct) => item._id === _id;
+      return state.items.some(event);
+    },
+    total: (state) => state.items.reduce((acc, item) => acc + item.price, 0),
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      favoriteApi.endpoints.getFavoriteProducts.matchFulfilled,
+      (state, { payload }) => {
+        state.items = payload;
+        state._id = payload._id;
+      }
+    );
+    builder.addMatcher(
+      favoriteApi.endpoints.addOneFavorite.matchFulfilled,
+      (state, { payload }) => {
+        state.items = [...state.items, payload];
+      }
+    );
+    builder.addMatcher(
+      favoriteApi.endpoints.deleteOneFavorite.matchFulfilled,
+      (state, { payload }) => {
+        state.items = state.items.filter((item) => item._id !== payload._id);
+      }
+    );
+    builder.addMatcher(
+      userApi.endpoints.logout.matchFulfilled,
+      (state, { payload }) => {
+        state._id = null;
+        state.items = [];
+      }
+    );
   },
 });
 
-export const isFavorite = (state: IFavoriteSlice, product: IProduct | null) => {
-  if (!product) return false;
-  const items = state.items;
-  return items.some((e) => e._id === product._id);
-};
-
 // selectors
-// export const { getUser, getIsAuth, getIsLoading } = userSlice.selectors;
+export const { isInFavorite, total } = favoriteSlice.selectors;
 
 // actions
-export const {
-  reset,
-  initFavorite,
-  addFavorite,
-  removeFavorite,
-  favoriteHandler,
-} = favoriteSlice.actions;
+export const { reset } = favoriteSlice.actions;

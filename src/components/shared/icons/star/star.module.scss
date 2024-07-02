@@ -1,0 +1,8 @@
+.active {
+  @include transition;
+  fill: var(--primary);
+}
+.default {
+  fill: var(--filter-brightness);
+  @include transition;
+}

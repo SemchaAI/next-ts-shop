@@ -1,19 +1,19 @@
 'use client';
-import { IUser, IUserStore } from '@/models/user';
+import { IUserResponse } from '@/models/user';
 import { userApi } from '@/services/userApi';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-const initialState: IUserStore = {
+const initialState: IUserResponse = {
   user: {
-    role: 'USER',
-    id: '',
-    name: '',
     email: '',
+    password: '',
+    name: '',
+    id: null,
     isActivated: false,
+    role: 'USER',
   },
-  isAuth: false,
-  isLoading: false,
-  accessToken: null,
+  accessToken: '',
+  refreshToken: '',
 };
 
 export const userSlice = createSlice({
@@ -21,24 +21,22 @@ export const userSlice = createSlice({
   initialState,
 
   reducers: {
-    setAuth: (state, action: PayloadAction<boolean>) => {
-      state.isAuth = action.payload;
-    },
-    setUser: (state, action: PayloadAction<IUser>) => {
-      state.user = action.payload;
-    },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
+    setUser: (state, action: PayloadAction<IUserResponse>) => {
+      state.user = action.payload.user;
     },
     setToken: (state, action: PayloadAction<string>) => {
       state.accessToken = action.payload;
     },
     reset: () => initialState,
-    isAdmin: (state) => {
-      state.user.role === 'ADMIN';
-    },
   },
   extraReducers: (builder) => {
+    builder.addMatcher(
+      userApi.endpoints.register.matchFulfilled,
+      (state, { payload }) => {
+        state.accessToken = payload.accessToken;
+        state.user = payload.user;
+      }
+    );
     builder.addMatcher(
       userApi.endpoints.login.matchFulfilled,
       (state, { payload }) => {
@@ -46,9 +44,22 @@ export const userSlice = createSlice({
         state.user = payload.user;
       }
     );
+    builder.addMatcher(
+      userApi.endpoints.refresh.matchFulfilled,
+      (state, { payload }) => {
+        state.accessToken = payload.accessToken;
+        state.user = payload.user;
+      }
+    );
+    builder.addMatcher(
+      userApi.endpoints.logout.matchFulfilled,
+      (state, { payload }) => {
+        state.accessToken = '';
+        state.user = initialState.user;
+      }
+    );
   },
 });
 
 // actions
-export const { setAuth, setToken, setUser, setLoading, reset, isAdmin } =
-  userSlice.actions;
+export const { setUser, setToken, reset } = userSlice.actions;

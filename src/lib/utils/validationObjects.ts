@@ -1,13 +1,13 @@
 export const required = {
   required: {
     value: true,
-    message: 'Обязательное поле',
+    message: 'Obligatory field',
   },
 };
 export const Min5 = {
   minLength: {
     value: 5,
-    message: 'Минимальная длина 5',
+    message: 'Minimum length 5',
   },
 };
 
@@ -15,15 +15,21 @@ export const emailValidation = {
   ...required,
   pattern: {
     value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-    message: 'Некорректная почта',
+    message: 'Incorrect mail',
   },
 };
 
-export const ReqMin5Max10Validation = {
+export const ReqMin5Max20Validation = {
   ...required,
   ...Min5,
   maxLength: {
-    value: 10,
-    message: 'Максимальная длина 10',
+    value: 20,
+    message: 'Maximal length 20',
   },
 };
+
+export type ValidationTypes =
+  | typeof required
+  | typeof Min5
+  | typeof emailValidation
+  | typeof ReqMin5Max20Validation;

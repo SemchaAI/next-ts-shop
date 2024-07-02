@@ -1,5 +1,5 @@
 import type {
-  IAuthResponse,
+  IUserResponse,
   LoginRequest,
   RegisterRequest,
 } from '@/models/user';
@@ -7,14 +7,14 @@ import {
   USER_ROUTE_LOGIN,
   USER_ROUTE_LOGOUT,
   USER_ROUTE_REGISTRATION,
-  USER_ROUTE_TEST,
+  USER_ROUTE_REFRESH,
   USER_TAG,
 } from '@/lib/utils/consts';
 import { baseApi } from '@/services/api/baseApi';
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    login: build.mutation<IAuthResponse, LoginRequest>({
+    login: build.mutation<IUserResponse, LoginRequest>({
       query: (body) => ({
         url: USER_ROUTE_LOGIN,
         method: 'POST',
@@ -22,14 +22,7 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [USER_TAG],
     }),
-    test: build.query({
-      query: () => ({
-        url: USER_ROUTE_TEST,
-        method: 'GET',
-      }),
-      providesTags: [USER_TAG],
-    }),
-    register: build.mutation<IAuthResponse, RegisterRequest>({
+    register: build.mutation<IUserResponse, RegisterRequest>({
       query: (body) => ({
         url: USER_ROUTE_REGISTRATION,
         method: 'POST',
@@ -37,19 +30,26 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [USER_TAG],
     }),
-    logout: build.query({
+    refresh: build.query<IUserResponse, void>({
+      query: () => ({
+        url: USER_ROUTE_REFRESH,
+        method: 'GET',
+      }),
+      providesTags: [USER_TAG],
+    }),
+    logout: build.mutation({
       query: () => ({
         url: USER_ROUTE_LOGOUT,
         method: 'POST',
       }),
-      providesTags: [USER_TAG],
+      invalidatesTags: [USER_TAG],
     }),
   }),
 });
 
 export const {
   useLoginMutation,
-  useLazyTestQuery,
   useRegisterMutation,
-  useLazyLogoutQuery,
+  useLogoutMutation,
+  useLazyRefreshQuery,
 } = userApi;

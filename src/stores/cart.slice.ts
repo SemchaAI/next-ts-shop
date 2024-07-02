@@ -1,12 +1,11 @@
+import type { ISlice } from '@/models/cart-favorite';
 import { IProduct } from '@/models/products';
 import { cartApi } from '@/services/cartApi';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-interface ICartSlice {
-  _id: null | string;
-  items: IProduct[];
-}
+import { userApi } from '@/services/userApi';
 
-const initialState: ICartSlice = {
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
+const initialState: ISlice = {
   _id: null,
   items: [],
 };
@@ -16,8 +15,12 @@ export const cartSlice = createSlice({
   initialState,
 
   reducers: {
-    setCartProducts: (state, action: PayloadAction<IProduct[]>) => {
-      state.items = action.payload;
+    // setCartProducts: (state, action: PayloadAction<IProduct[]>) => {
+    //   state.items = action.payload;
+    // },
+    setCart(state, action: PayloadAction<ISlice>) {
+      state._id = action.payload._id;
+      state.items = action.payload.items;
     },
     reset: () => initialState,
   },
@@ -49,6 +52,13 @@ export const cartSlice = createSlice({
         state.items = state.items.filter((item) => item._id !== payload._id);
       }
     );
+    builder.addMatcher(
+      userApi.endpoints.logout.matchFulfilled,
+      (state, { payload }) => {
+        state._id = null;
+        state.items = [];
+      }
+    );
   },
 });
 
@@ -56,4 +66,4 @@ export const cartSlice = createSlice({
 export const { isInCart, total } = cartSlice.selectors;
 
 // actions
-export const { reset } = cartSlice.actions;
+export const { reset, setCart } = cartSlice.actions;

@@ -1,4 +1,4 @@
-import ProductInfoSkeleton from '@/components/products/ProductInfo/ProductInfoSkeleton';
+import ProductInfoSkeleton from '@/components/entities/products/ProductInfo/ProductInfoSkeleton';
 
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.

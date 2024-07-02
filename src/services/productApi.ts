@@ -1,11 +1,20 @@
-import { IProduct, IType } from '@/models/products';
+import type {
+  IProduct,
+  IProductRates,
+  IRate,
+  IRateSuccess,
+  IType,
+} from '@/models/products';
 import { baseApi } from './api/baseApi';
 import {
   PRODUCT_ROUTE,
   PRODUCT_ROUTE_TYPE,
   PRODUCT_TAG,
+  RATING_ROUTE,
+  RATING_TAG,
   TYPE_TAG,
 } from '@/lib/utils/consts';
+import type { IFormRate, IFormRateUpdate, IRateRefs } from '@/models/forms';
 
 export const productApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -49,6 +58,43 @@ export const productApi = baseApi.injectEndpoints({
           body,
         };
       },
+      invalidatesTags: [PRODUCT_TAG],
+    }),
+
+    getProductRates: build.query<
+      IProductRates,
+      { productId: string; page: number }
+    >({
+      query: ({ productId, page }) => ({
+        url: `${RATING_ROUTE}/rate`,
+        method: 'GET',
+        params: { productId, page },
+      }),
+      providesTags: [RATING_TAG],
+    }),
+    createRate: build.mutation<IRate, IFormRate>({
+      query: (body) => ({
+        url: `${RATING_ROUTE}/rate`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: [RATING_TAG],
+    }),
+    updateRate: build.mutation<IRate, IFormRateUpdate>({
+      query: (body) => ({
+        url: `${RATING_ROUTE}/rate/update`,
+        method: 'PATCH',
+        body,
+      }),
+      invalidatesTags: [RATING_TAG],
+    }),
+    checkRate: build.mutation<IRateSuccess, IRateRefs>({
+      query: (body) => ({
+        url: `${RATING_ROUTE}/rate/check`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: [RATING_TAG],
     }),
   }),
 });
@@ -59,4 +105,8 @@ export const {
   useGetOneProductQuery,
   useCreateTypeMutation,
   useCreateProductMutation,
+  useGetProductRatesQuery,
+  useCreateRateMutation,
+  useUpdateRateMutation,
+  useCheckRateMutation,
 } = productApi;

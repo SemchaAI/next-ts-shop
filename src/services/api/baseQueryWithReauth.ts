@@ -19,8 +19,7 @@ export type QueryReturnValue<T = unknown, E = unknown, M = unknown> =
       meta?: M;
     };
 
-// import { setToken } from '@/stores/user.slice';
-import { IAuthResponse, ILogoutResponse } from '@/models/user';
+import type { IUserResponse, ILogoutResponse } from '@/models/user';
 import { USER_ROUTE_REFRESH, USER_ROUTE_LOGOUT } from '@/lib/utils/consts';
 
 const AUTH_ERROR_CODES = new Set([401]);
@@ -31,6 +30,21 @@ export async function baseQueryWithReauth(
   extraOptions: NonNullable<unknown>
 ): Promise<QueryReturnValue<unknown, FetchBaseQueryError, FetchBaseQueryMeta>> {
   let result = await baseQuery(args, api, extraOptions);
+  if (typeof result.error?.status === 'number' && result.error.status === 403) {
+    localStorage.removeItem('user');
+    localStorage.removeItem('isLogout');
+    api.dispatch({
+      type: 'user/reset',
+    });
+    api.dispatch({
+      type: 'errors/setError',
+      payload: {
+        critical: false,
+        statusCode: 403,
+        message: 'Access denied. You are logged out.',
+      },
+    });
+  }
   if (
     typeof result.error?.status === 'number' &&
     AUTH_ERROR_CODES.has(result.error.status)
@@ -41,7 +55,7 @@ export async function baseQueryWithReauth(
         api,
         extraOptions
       )) as QueryReturnValue<
-        IAuthResponse,
+        IUserResponse,
         FetchBaseQueryError,
         FetchBaseQueryMeta
       >;
@@ -53,7 +67,13 @@ export async function baseQueryWithReauth(
           type: 'user/setToken',
           payload: refreshResult.data.accessToken,
         });
-        localStorage.setItem('user', JSON.stringify(refreshResult.data));
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            user: refreshResult.data.user,
+            accessToken: refreshResult.data.accessToken,
+          })
+        );
 
         // Retry the initial query
         result = await baseQuery(args, api, extraOptions);
@@ -71,7 +91,7 @@ export async function baseQueryWithReauth(
           FetchBaseQueryMeta
         >;
         localStorage.removeItem('user');
-        // api.dispatch(reset());
+        localStorage.removeItem('isLogout');
         api.dispatch({
           type: 'user/reset',
         });

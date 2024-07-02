@@ -1,14 +1,10 @@
 import { Metadata, ResolvingMetadata } from 'next';
+import css from './productPage.module.scss';
 
 import { getProduct } from '@/services/getProduct';
 
-import ProductInfo from '@/components/products/ProductInfo/ProductInfo';
-import ProductInfoSkeleton from '@/components/products/ProductInfo/ProductInfoSkeleton';
-
-import type { IProduct } from '@/models/products';
-import type { IServerError } from '@/models/errors';
-
-import css from './productPage.module.scss';
+import ProductInfo from '@/components/entities/products/ProductInfo/ProductInfo';
+import ProductInfoSkeleton from '@/components/entities/products/ProductInfo/ProductInfoSkeleton';
 
 type Props = {
   params: { productId: string };
@@ -54,8 +50,8 @@ export default async function Product({ params }: Props) {
   const gallery = thumbnailsGuard
     ? [...product.thumbnails.img, product.img]
     : product && product.img !== undefined
-      ? [product.img]
-      : ['src/to/placeholder.png'];
+    ? [product.img]
+    : ['src/to/placeholder.png'];
 
   console.log('product', product);
 

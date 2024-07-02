@@ -5,6 +5,7 @@
   --primary-variant: #3700b3;
   --secondary: #03dac5;
   --tertiary: #ffffff;
+  --filter-brightness: #c4c4c4;
 
   //#292929 was changed for accessibility to
   --background: #242424;
@@ -40,6 +41,13 @@
 
   --on-error: #000000;
 
+  //gradients
+  --gd-sidebar: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(16, 16, 16, 1) 50%,
+    rgba(27, 27, 27, 1) 100%
+  );
   // SHADOWS
   --dp-0: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   --dp-1: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
@@ -49,6 +57,7 @@
 
   // INDEXES
   --header: 3;
+  --header-overlay: 2;
   --bannerBtns: 2;
   /* modal library have 1000 index */
   --z-error: 1001;

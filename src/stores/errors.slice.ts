@@ -1,4 +1,6 @@
-import type { TError, IErrorState } from '@/models/errors';
+import type { TError, IErrorState, IServerError } from '@/models/errors';
+import { productApi } from '@/services/productApi';
+import { userApi } from '@/services/userApi';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 const initialState: IErrorState = {
@@ -27,8 +29,54 @@ export const errorsSlice = createSlice({
         id: currId,
         message: action.payload.message,
         critical: action.payload.critical,
+        statusCode: action.payload.statusCode,
       });
     },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      userApi.endpoints.register.matchRejected,
+      (state, { payload }) => {
+        if (payload?.data) {
+          const currId = state.lastAI++;
+          state.errors.push({
+            id: currId,
+            message: (payload.data as IServerError).message,
+            statusCode: payload.status as number,
+            critical: false,
+          });
+        }
+      }
+    );
+    builder.addMatcher(
+      userApi.endpoints.login.matchRejected,
+      (state, { payload }) => {
+        if (payload?.data) {
+          const currId = state.lastAI++;
+          state.errors.push({
+            id: currId,
+            message: (payload.data as IServerError).message,
+            statusCode: payload.status as number,
+            critical: false,
+          });
+        }
+      }
+    );
+
+    builder.addMatcher(
+      productApi.endpoints.createRate.matchRejected,
+      (state, { payload }) => {
+        if (payload?.data) {
+          const currId = state.lastAI++;
+          state.errors.push({
+            id: currId,
+            message: (payload.data as IServerError).message,
+            statusCode: payload.status as number,
+            critical: false,
+          });
+        }
+      }
+    );
   },
 });
 

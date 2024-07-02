@@ -1,0 +1,38 @@
+.header {
+  background-color: var(--background-soft);
+  padding: 10px 0;
+  grid-area: header;
+}
+.headerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.logo {
+}
+.nav {
+  display: flex;
+}
+.navList {
+  display: flex;
+  gap: 10px;
+}
+.navItem {
+}
+
+.logoLink,
+.navLink {
+  color: var(--primary);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .headerContainer {
+    gap: 40px;
+  }
+}

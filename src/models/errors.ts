@@ -1,22 +1,27 @@
 export interface IError {
   message: string;
   critical: boolean;
+  statusCode: number;
   id: number;
 }
-export interface IServerError {
-  message: string;
+
+export interface IServerError extends Pick<IError, 'statusCode' | 'message'> {
   errors: [];
 }
 
 export interface IErrors {
   errors: IError[];
 }
-export interface IRTKError {
-  status: number;
-  data: {
-    message: string;
-    errors: [];
-  };
+// export interface IRTKError {
+//   status: number;
+//   data: {
+//     message: string;
+//     errors: [];
+//   };
+// }
+export interface IErrorResponse {
+  message: string;
+  errors: [];
 }
 
 export interface IErrorState extends IErrors {

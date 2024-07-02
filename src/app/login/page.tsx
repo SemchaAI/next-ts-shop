@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import LoginForm from '@/components/forms/loginForm/LoginForm';
 import css from './loginPage.module.scss';
 export default function Login() {
@@ -9,5 +10,21 @@ export default function Login() {
         <LoginForm />
       </div>
     </section>
+=======
+import LogInSection from '@/components/widgets/logSection/LoginSection';
+
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Next ts shop | Login',
+  description: 'User login page of shop on next 14',
+};
+
+export default function page() {
+  return (
+    <>
+      <LogInSection />
+    </>
+>>>>>>> Stashed changes
   );
 }

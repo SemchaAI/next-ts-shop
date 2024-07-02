@@ -1,5 +1,5 @@
 'use client';
-import MainBtn from '@/components/buttons/MainBtn';
+import MainBtn from '@/components/shared/buttons/MainBtn';
 import css from './assets/error.module.scss';
 export default function Error({
   error,

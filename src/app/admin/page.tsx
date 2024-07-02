@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import AdminPanel from '@/components/widgets/adminPanel/AdminPanel';
 import css from './adminPage.module.scss';
 
@@ -11,5 +12,15 @@ export default function AdminPage() {
         </div>
       </div>
     </section>
+=======
+import AdminSection from '@/components/widgets/adminSection/AdminSection';
+import React from 'react';
+
+export default function page() {
+  return (
+    <>
+      <AdminSection />
+    </>
+>>>>>>> Stashed changes
   );
 }

@@ -1,0 +1,17 @@
+.footer {
+  margin-top: 40px;
+  width: 100%;
+  background-color: var(--background-soft);
+  grid-area: footer;
+}
+.footerContainer {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.footerText {
+  width: 100%;
+
+  @include body2Typo;
+  text-align: end;
+}

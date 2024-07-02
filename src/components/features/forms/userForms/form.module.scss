@@ -1,0 +1,24 @@
+.form {
+  margin: 0 auto;
+  min-width: 340px;
+  display: flex;
+  flex-direction: column;
+}
+.formControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.field {
+}
+.label {
+}
+.input {
+}
+.linkBlock {
+  display: flex;
+  gap: 5px;
+  position: relative;
+}
+.link {
+}

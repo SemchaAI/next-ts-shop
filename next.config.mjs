@@ -1,10 +1,14 @@
+import bundleAnalyzer from '@next/bundle-analyzer';
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   sassOptions: {
     includePaths: ['./src/app/assets'],
     prependData: `@import "mixins.scss";`,
   },
-  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
@@ -15,14 +19,9 @@ const nextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: '/register',
-        destination: '/login',
-      },
-    ];
-  },
+  //dev
+  productionBrowserSourceMaps: true,
+  reactStrictMode: true,
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);
