@@ -20,7 +20,7 @@ const nextConfig = {
     ],
   },
   //dev
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   reactStrictMode: true,
 };
 
