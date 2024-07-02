@@ -1,25 +1,31 @@
 import { Metadata, ResolvingMetadata } from 'next';
-import css from './productPage.module.scss';
-
 import { getProduct } from '@/services/getProduct';
 
 import ProductInfo from '@/components/entities/products/ProductInfo/ProductInfo';
 import ProductInfoSkeleton from '@/components/entities/products/ProductInfo/ProductInfoSkeleton';
 
-type Props = {
+// import type { IServerError } from '@/models/errors';
+// import type { IProduct } from '@/models/products';
+
+import css from './productPage.module.scss';
+
+// type DEPRECATED_TProps = {
+//   params: { productId: string };
+//   product: IProduct | IServerError;
+// };
+type TProps = {
   params: { productId: string };
-  product: IProduct | IServerError;
 };
 
 export async function generateMetadata(
-  { params }: Props,
+  { params }: TProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   // read route params
-  const id = params.productId;
+  const productId = params.productId;
 
   // fetch data
-  const product = await getProduct({ productId: id });
+  const product = await getProduct({ productId });
 
   if ('message' in product)
     return {
@@ -32,7 +38,7 @@ export async function generateMetadata(
   };
 }
 
-export default async function Product({ params }: Props) {
+export default async function Product({ params }: TProps) {
   const product = await getProduct({ productId: params.productId });
 
   if ('message' in product)
@@ -53,7 +59,7 @@ export default async function Product({ params }: Props) {
     ? [product.img]
     : ['src/to/placeholder.png'];
 
-  console.log('product', product);
+  // console.log('product', product);
 
   return (
     <section className={css.product}>

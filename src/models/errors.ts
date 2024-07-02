@@ -12,13 +12,6 @@ export interface IServerError extends Pick<IError, 'statusCode' | 'message'> {
 export interface IErrors {
   errors: IError[];
 }
-// export interface IRTKError {
-//   status: number;
-//   data: {
-//     message: string;
-//     errors: [];
-//   };
-// }
 export interface IErrorResponse {
   message: string;
   errors: [];

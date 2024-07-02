@@ -1,14 +1,6 @@
-<<<<<<< Updated upstream
-import { Metadata } from 'next';
-
-import css from './cartPage.module.scss';
-import CartPanel from '@/components/widgets/cartPanel/CartPanel';
-
-=======
 import CartSection from '@/components/widgets/cartSection/CartSection';
 import { Metadata } from 'next';
 
->>>>>>> Stashed changes
 export const metadata: Metadata = {
   title: 'Next ts shop | Cart',
   description: 'Cart page of shop on next 14',
@@ -16,19 +8,8 @@ export const metadata: Metadata = {
 
 export default function CartPage() {
   return (
-<<<<<<< Updated upstream
-    <section className={css.cart}>
-      <div className="wrapper">
-        <div className={css.cartContainer}>
-          <h1 className={css.cartTitle}>Cart</h1>
-          <CartPanel />
-        </div>
-      </div>
-    </section>
-=======
     <>
       <CartSection />
     </>
->>>>>>> Stashed changes
   );
 }

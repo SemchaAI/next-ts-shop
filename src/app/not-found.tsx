@@ -1,4 +1,4 @@
-import MainLink from '@/components/links/MainLink';
+import MainLink from '@/components/shared/links/MainLink';
 
 export default function NotFound() {
   return (
