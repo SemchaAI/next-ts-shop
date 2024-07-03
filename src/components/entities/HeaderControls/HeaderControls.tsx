@@ -23,46 +23,24 @@ export default function HeaderControls() {
     localStorage.removeItem('isLogout');
   }, []);
 
-  if (user.isActivated) {
+  if (!user.isActivated) {
     return (
       <>
         <div className={css.navButtons}>
-          {user.role === 'ADMIN' && (
-            <MainLink
-              mode="link"
-              version="text"
-              to={'/admin'}
-            >
-              Admin
-            </MainLink>
-          )}
           <MainLink
-            mode="link"
-            version="text"
-            to={'/favorite'}
-          >
-            <div className={css.icon}>
-              <FavoriteIcon className={css.headerIcon} />
-              <Badge inBadge={inFavorite} />
-            </div>
-          </MainLink>
-          <MainLink
-            mode="link"
-            version="text"
-            to={'/cart'}
-          >
-            <div className={css.icon}>
-              <Cart className={css.headerIcon} />
-              <Badge inBadge={inCart} />
-            </div>
-          </MainLink>
-          <ChangeTheme />
-          <MainBtn
-            onClick={logoutHandler}
+            mode="button"
             version="contain"
+            to="/login"
           >
-            Log out
-          </MainBtn>
+            Sign in
+          </MainLink>
+          <MainLink
+            mode="button"
+            version="contain"
+            to="/registration"
+          >
+            Sign up
+          </MainLink>
         </div>
       </>
     );
@@ -70,20 +48,42 @@ export default function HeaderControls() {
   return (
     <>
       <div className={css.navButtons}>
+        {user.role === 'ADMIN' && (
+          <MainLink
+            mode="link"
+            version="text"
+            to={'/admin'}
+          >
+            Admin
+          </MainLink>
+        )}
         <MainLink
-          mode="button"
-          version="contain"
-          to="/login"
+          mode="link"
+          version="text"
+          to={'/favorite'}
         >
-          Sign in
+          <div className={css.icon}>
+            <FavoriteIcon className={css.headerIcon} />
+            <Badge inBadge={inFavorite} />
+          </div>
         </MainLink>
         <MainLink
-          mode="button"
-          version="contain"
-          to="/registration"
+          mode="link"
+          version="text"
+          to={'/cart'}
         >
-          Sign up
+          <div className={css.icon}>
+            <Cart className={css.headerIcon} />
+            <Badge inBadge={inCart} />
+          </div>
         </MainLink>
+        <ChangeTheme />
+        <MainBtn
+          onClick={logoutHandler}
+          version="contain"
+        >
+          Log out
+        </MainBtn>
       </div>
     </>
   );
