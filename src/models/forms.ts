@@ -19,9 +19,9 @@ export interface IFormProduct {
   ];
 }
 
-export interface IFormRateUpdate extends IFormRate {
-  difference: number;
-}
+// export interface IFormRateUpdate extends IFormRate {
+//   difference: number;
+// }
 export interface IFormRate extends IRateRefs {
   rate: number;
   message: string;
