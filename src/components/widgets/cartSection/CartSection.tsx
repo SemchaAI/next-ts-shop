@@ -1,15 +1,20 @@
 'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+
 import { useAppDispatch, useAppSelector } from '@/lib/utils/hooks';
 import { useDeleteOneMutation } from '@/services/cartApi';
 
-import css from './cartSection.module.scss';
-import Image from 'next/image';
-import MainBtn from '@/components/shared/buttons/MainBtn';
-import CloseIcon from '@/components/shared/icons/CloseIcon';
-import Link from 'next/link';
 import { total } from '@/stores/cart.slice';
 import { setError } from '@/stores/errors.slice';
-import { IProduct } from '@/models/products';
+
+import MainBtn from '@/components/shared/buttons/MainBtn';
+import CloseIcon from '@/components/shared/icons/CloseIcon';
+
+import type { IProduct } from '@/models/products';
+
+import css from './cartSection.module.scss';
 
 export default function CartSection() {
   const { items } = useAppSelector((state) => state.cart);
@@ -48,59 +53,59 @@ export default function CartSection() {
           <h1 className={css.cartTitle}>Cart</h1>
           <div className={css.cartBlock}>
             <ul className={css.cartItems}>
-              {/* <AnimatePresence mode="popLayout"> */}
-              {items.map((item: IProduct, i) => (
-                <li
-                  // layout
-                  // initial={{ opacity: 1 }}
-                  // exit={{ opacity: 0, translateX: [0, -2000] }}
-                  // transition={{ duration: 0.6 }}
-                  className={css.cartItem}
-                  key={item._id}
-                >
-                  <div className={css.cartItemContainer}>
-                    <Link
-                      className={css.productLink}
-                      href={`product/${item._id}`}
-                    >
-                      <Image
-                        priority={i > 1 ? false : true}
-                        width={200}
-                        height={200}
-                        sizes="(max-width: 375px) 200px,200px"
-                        className={css.cartItemImg}
-                        src={url + '/' + item.img}
-                        alt={item.title}
-                      />
-                    </Link>
-                    <div className={css.cartItemInfo}>
-                      <h3 className={css.cartItemTitle}>{item.title}</h3>
-                      <div className={css.cartItemDescription}>
-                        {item.description}
-                      </div>
-                      <div className={css.cartItemPrice}>
-                        <span>Price:</span>
-                        {item.price}
-                        <b>MDL</b>
+              <AnimatePresence mode="popLayout">
+                {items.map((item: IProduct, i) => (
+                  <motion.li
+                    layout
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0, translateX: [0, -2000] }}
+                    transition={{ duration: 0.6 }}
+                    className={css.cartItem}
+                    key={item._id}
+                  >
+                    <div className={css.cartItemContainer}>
+                      <Link
+                        className={css.productLink}
+                        href={`product/${item._id}`}
+                      >
+                        <Image
+                          priority={i > 1 ? false : true}
+                          width={200}
+                          height={200}
+                          sizes="(max-width: 375px) 200px,200px"
+                          className={css.cartItemImg}
+                          src={url + '/' + item.img}
+                          alt={item.title}
+                        />
+                      </Link>
+                      <div className={css.cartItemInfo}>
+                        <h3 className={css.cartItemTitle}>{item.title}</h3>
+                        <div className={css.cartItemDescription}>
+                          {item.description}
+                        </div>
+                        <div className={css.cartItemPrice}>
+                          <span>Price:</span>
+                          {item.price}
+                          <b>MDL</b>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className={css.btnsContainer}>
-                    <MainBtn
-                      version="outline"
-                      icon={true}
-                      onClick={() => removeHandler(item._id)}
-                    >
-                      <CloseIcon
-                        width={24}
-                        height={24}
-                        className={css.cartItemBtnIcon}
-                      />
-                    </MainBtn>
-                  </div>
-                </li>
-              ))}
-              {/* </AnimatePresence> */}
+                    <div className={css.btnsContainer}>
+                      <MainBtn
+                        version="outline"
+                        icon={true}
+                        onClick={() => removeHandler(item._id)}
+                      >
+                        <CloseIcon
+                          width={24}
+                          height={24}
+                          className={css.cartItemBtnIcon}
+                        />
+                      </MainBtn>
+                    </div>
+                  </motion.li>
+                ))}
+              </AnimatePresence>
             </ul>
             <div className={css.cartOrder}>
               <h3 className={css.cartTotalTitle}>Total</h3>
