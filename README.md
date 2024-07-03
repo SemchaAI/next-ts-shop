@@ -1,10 +1,8 @@
 ## Getting Started
 
-V2 version of my mini online store
+V2 version of my mini online store.
 
-# Getting Started
-
-Main changes:
+# Main changes:
 
 1. Swiper(65.2kB) was changed to Embla carousel(17kB minified), unpacked size 3.33mb vs 483kb.
 2. Activation account logic.
@@ -16,7 +14,7 @@ Main changes:
 
 # commands
 
-"dev": "next dev -p 5173",
-"build": "next build",
-"start": "next start -p 5173",
-"lint": "next lint"
+1. "dev": "next dev -p 5173",
+2. "build": "next build",
+3. "start": "next start -p 5173",
+4. "lint": "next lint"
