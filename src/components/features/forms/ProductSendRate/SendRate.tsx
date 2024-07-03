@@ -71,11 +71,11 @@ export default function SendRate({ productId }: { productId: string }) {
     console.log('formData', { ...data, productId, userId: user.id });
     if (data.rate > 0 && user.id) {
       if (isRated) {
+        console.log('isRated', isRated, data.rate);
         await updateRating({
           ...data,
           productId,
           userId: user.id,
-          difference: data.rate - starRate,
         });
       } else {
         await createRating({
