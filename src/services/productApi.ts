@@ -66,7 +66,7 @@ export const productApi = baseApi.injectEndpoints({
       { productId: string; page: number }
     >({
       query: ({ productId, page }) => ({
-        url: `${RATING_ROUTE}/rate`,
+        url: `${RATING_ROUTE}/rates`,
         method: 'GET',
         params: { productId, page },
       }),
@@ -80,7 +80,7 @@ export const productApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [RATING_TAG],
     }),
-    updateRate: build.mutation<IRate, IFormRateUpdate>({
+    updateRate: build.mutation<IRate, IFormRate>({
       query: (body) => ({
         url: `${RATING_ROUTE}/rate/update`,
         method: 'PATCH',
