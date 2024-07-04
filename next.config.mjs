@@ -20,7 +20,7 @@ const nextConfig = {
       {
         protocol: process.env.NEXT_PUBLIC_BASE_PROTOCOL,
         hostname: process.env.NEXT_PUBLIC_BASE_ADDRESS,
-        port: process.env.NEXT_PUBLIC_BASE_PORT,
+        port: '',
         pathname: '**',
       },
     ],
