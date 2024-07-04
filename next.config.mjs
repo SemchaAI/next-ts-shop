@@ -27,7 +27,7 @@ const nextConfig = {
   },
   //dev
   productionBrowserSourceMaps: false,
-  reactStrictMode: true,
+  reactStrictMode: process.env.NEXT_PUBLIC_STRICT_MODE,
 };
 
 export default withBundleAnalyzer(nextConfig);

@@ -20,7 +20,7 @@ export default function AppInit({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function init() {
       const user = await refresh();
-      console.log('user', user);
+      console.log('userINIT', user);
     }
     console.log('isLogout', isLogout);
     if (user.id === null && !isLogout) {
