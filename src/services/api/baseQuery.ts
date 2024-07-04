@@ -14,7 +14,7 @@ export const baseQuery: BaseQueryFn<
   NonNullable<unknown>,
   FetchBaseQueryMeta
 > = fetchBaseQuery({
-  baseUrl: 'http://localhost:5000/api',
+  baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL_BD}/api`,
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     console.log((getState() as RootState).user);

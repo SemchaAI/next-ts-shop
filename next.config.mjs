@@ -11,10 +11,16 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
+      // {
+      //   protocol: 'http',
+      //   hostname: 'localhost',
+      //   port: '5000',
+      //   pathname: '**',
+      // },
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '5000',
+        protocol: process.env.NEXT_PUBLIC_BASE_PROTOCOL,
+        hostname: process.env.NEXT_PUBLIC_BASE_ADDRESS,
+        port: '',
         pathname: '**',
       },
     ],
