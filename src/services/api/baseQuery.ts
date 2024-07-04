@@ -17,7 +17,7 @@ export const baseQuery: BaseQueryFn<
   baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL_BD}/api`,
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
-    console.log((getState() as RootState).user);
+    console.log((getState() as RootState).user, 'BaseQuery-USER');
     const { accessToken } = (getState() as RootState).user;
 
     if (accessToken) {
