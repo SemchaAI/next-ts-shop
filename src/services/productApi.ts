@@ -14,7 +14,7 @@ import {
   RATING_TAG,
   TYPE_TAG,
 } from '@/lib/utils/consts';
-import type { IFormRate, IFormRateUpdate, IRateRefs } from '@/models/forms';
+import type { IFormRate, IRateRefs } from '@/models/forms';
 
 export const productApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
