@@ -8,7 +8,8 @@ export const getProduct = async (params: {
   let product;
   try {
     product = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL_BD}/api/product/${params.productId}`
+      `${process.env.NEXT_PUBLIC_BASE_URL_BD}/api/product/${params.productId}`,
+      { next: { tags: ['PRODUCT_TAG'] } }
     );
     product = await product.json();
   } catch (error) {

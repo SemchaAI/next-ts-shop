@@ -19,6 +19,7 @@ import type { IFormRate } from '@/models/forms';
 
 import css from './sendRate.module.scss';
 import { useRouter } from 'next/navigation';
+import { revalidateTag } from 'next/cache';
 
 export default function SendRate({ productId }: { productId: string }) {
   const {
@@ -85,6 +86,7 @@ export default function SendRate({ productId }: { productId: string }) {
         });
       }
       startTransition(() => {
+        revalidateTag('PRODUCT_TAG');
         router.refresh();
       });
     }
