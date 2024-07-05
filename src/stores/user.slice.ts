@@ -52,6 +52,14 @@ export const userSlice = createSlice({
       }
     );
     builder.addMatcher(
+      userApi.endpoints.getUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload.user;
+        // state.refreshToken = payload.refreshToken;
+        state.accessToken = payload.accessToken;
+      }
+    );
+    builder.addMatcher(
       userApi.endpoints.logout.matchFulfilled,
       (state, { payload }) => {
         state.accessToken = '';

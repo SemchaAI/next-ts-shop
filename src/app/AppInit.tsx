@@ -3,12 +3,13 @@
 import { useAppSelector } from '@/lib/utils/hooks';
 import { useLazyGetCartProductsQuery } from '@/services/cartApi';
 import { useLazyGetFavoriteProductsQuery } from '@/services/favoriteApi';
-import { useLazyRefreshQuery } from '@/services/userApi';
+import { useLazyGetUserQuery } from '@/services/userApi';
 import { useEffect } from 'react';
 
 export default function AppInit({ children }: { children: React.ReactNode }) {
   const { user } = useAppSelector((state) => state.user);
-  const [refresh] = useLazyRefreshQuery();
+  // const [refresh] = useLazyRefreshQuery();
+  const [refresh] = useLazyGetUserQuery();
   const [getCartProducts] = useLazyGetCartProductsQuery();
   const [getFavoriteProducts] = useLazyGetFavoriteProductsQuery();
 

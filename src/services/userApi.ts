@@ -1,4 +1,5 @@
 import type {
+  IUser,
   IUserResponse,
   LoginRequest,
   RegisterRequest,
@@ -9,6 +10,7 @@ import {
   USER_ROUTE_REGISTRATION,
   USER_ROUTE_REFRESH,
   USER_TAG,
+  USER_ROUTE,
 } from '@/lib/utils/consts';
 import { baseApi } from '@/services/api/baseApi';
 
@@ -37,6 +39,13 @@ export const userApi = baseApi.injectEndpoints({
       }),
       providesTags: [USER_TAG],
     }),
+    getUser: build.query<IUserResponse, void>({
+      query: () => ({
+        url: USER_ROUTE,
+        method: 'GET',
+      }),
+      providesTags: [USER_TAG],
+    }),
     logout: build.mutation({
       query: () => ({
         url: USER_ROUTE_LOGOUT,
@@ -52,4 +61,5 @@ export const {
   useRegisterMutation,
   useLogoutMutation,
   useLazyRefreshQuery,
+  useLazyGetUserQuery,
 } = userApi;

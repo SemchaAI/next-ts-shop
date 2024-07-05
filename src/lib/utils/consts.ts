@@ -5,6 +5,7 @@ export const USER_ROUTE_REGISTRATION = '/user/registration';
 export const USER_ROUTE_LOGOUT = '/user/logout';
 export const USER_ROUTE_USERS = '/user/users';
 export const USER_ROUTE_REFRESH = '/user/refresh';
+export const USER_ROUTE = '/user';
 
 export const USER_ROUTE_TEST = '/user/test';
 
