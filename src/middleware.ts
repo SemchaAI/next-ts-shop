@@ -20,7 +20,7 @@ export const config = {
 
 export async function middleware(request: NextRequest) {
   const role = request.cookies.get('role');
-  console.log('MIDDLEWARE', role);
+  console.log('MIDDLEWARE', role, request.cookies.getAll());
   if (role?.value !== 'ADMIN') {
     return NextResponse.redirect(new URL('/login', request.url));
   }
