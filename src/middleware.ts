@@ -21,11 +21,11 @@ export const config = {
 
 export async function middleware(request: NextRequest) {
   //tmp decision
-  const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_BD}/api/user`);
-  const { user } = (await data.json()) as { user: IUser };
-  // const role = request.cookies.get('role');
-  // console.log('MIDDLEWARE', role, request.cookies.getAll());
-  if (user.role !== 'ADMIN') {
+  // const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_BD}/api/user`);
+  // const { user } = (await data.json()) as { user: IUser };
+  const role = request.cookies.get('role');
+  console.log('MIDDLEWARE', role, request.cookies.getAll());
+  if (role?.value !== 'ADMIN') {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 }
