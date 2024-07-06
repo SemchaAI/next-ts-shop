@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import type { IUser } from './models/user';
 // import createMiddleware from 'next-intl/middleware';
 // import { locales, localePrefix, pathnames } from './navigation';
 
@@ -19,9 +20,12 @@ export const config = {
 };
 
 export async function middleware(request: NextRequest) {
-  const role = request.cookies.get('role');
-  console.log('MIDDLEWARE', role, request.cookies.getAll());
-  if (role?.value !== 'ADMIN') {
+  //tmp decision
+  const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_BD}/api/user`);
+  const { user } = (await data.json()) as { user: IUser };
+  // const role = request.cookies.get('role');
+  // console.log('MIDDLEWARE', role, request.cookies.getAll());
+  if (user.role !== 'ADMIN') {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 }
