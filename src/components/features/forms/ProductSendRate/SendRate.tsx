@@ -19,7 +19,6 @@ import type { IFormRate } from '@/models/forms';
 
 import css from './sendRate.module.scss';
 import { useRouter } from 'next/navigation';
-import { revalidateTag } from 'next/cache';
 import action from '@/app/actions';
 
 export default function SendRate({ productId }: { productId: string }) {
@@ -87,6 +86,9 @@ export default function SendRate({ productId }: { productId: string }) {
         });
       }
       startTransition(async () => {
+        // isnt good if marketplace have a lot of units
+        //mb better to revalidate just by time
+        // Revalidate at most after 1 hour { next: { revalidate: 3600 } }
         await action();
         router.refresh();
       });
