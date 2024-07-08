@@ -62,9 +62,22 @@ export const errorsSlice = createSlice({
         }
       }
     );
-
     builder.addMatcher(
       productApi.endpoints.createRate.matchRejected,
+      (state, { payload }) => {
+        if (payload?.data) {
+          const currId = state.lastAI++;
+          state.errors.push({
+            id: currId,
+            message: (payload.data as IServerError).message,
+            statusCode: payload.status as number,
+            critical: false,
+          });
+        }
+      }
+    );
+    builder.addMatcher(
+      productApi.endpoints.createProduct.matchRejected,
       (state, { payload }) => {
         if (payload?.data) {
           const currId = state.lastAI++;
