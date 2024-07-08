@@ -1,5 +1,9 @@
 .section {
   margin: auto;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
 }
 
 .sectionContainer {

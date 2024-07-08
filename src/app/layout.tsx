@@ -35,6 +35,7 @@ export default function RootLayout({
               // display: 'flex',
               // flexDirection: 'column',
               gridArea: `main`,
+              paddingBottom: '40px',
             }}
           >
             <Suspense fallback={<Loading />}>{children}</Suspense>
