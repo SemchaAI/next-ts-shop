@@ -1,7 +1,7 @@
 ## Getting Started
 
-V2 version of my mini online store.\n
-Based on this repo (front) and (backend) https://github.com/SemchaAI/backend-ts-shop \n
+V2 version of my mini online store.<br />
+Based on this repo (front) and (backend) https://github.com/SemchaAI/backend-ts-shop <br />
 
 My prod version example: https://next-ts-shop-production.up.railway.app/
 
