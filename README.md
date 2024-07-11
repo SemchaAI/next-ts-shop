@@ -1,6 +1,9 @@
 ## Getting Started
 
-V2 version of my mini online store.
+V2 version of my mini online store.\n
+Based on this repo (front) and (backend) https://github.com/SemchaAI/backend-ts-shop \n
+
+My prod version example: https://next-ts-shop-production.up.railway.app/
 
 # Main changes:
 
@@ -11,6 +14,7 @@ V2 version of my mini online store.
 5. Optimization for google bots(lighthouse).
 6. Using grids to understand their benefits.
 7. Mini fsd classification for components.
+8. Middleware limited access based on cookies for admin panel of project.
 
 # commands
 
